@@ -65,3 +65,12 @@ app.delete('/livros/:id', (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
+
+
+
+/* 200 - SUCESS OK 
+  201 CREATED
+  400 BAD REQUEST
+  401 NAO AUTORIAZADO
+  404 NAO ENCONTRADO
+  */  
