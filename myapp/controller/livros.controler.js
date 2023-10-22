@@ -1,57 +1,56 @@
-const produtoService = require('../service/livroService')
-
+const livroService = require('../service/livroService'); // Nome do módulo corrigido
 
 function listar(req, res) {
-    const listaProdutos = livro.Service.listar();
-    res.json(listaLivro);
+    const listaLivros = livroService.listarLivros(); // Corrigir o nome da função no módulo
+    res.json(listaLivros);
 }
 
 function inserir(req, res) {
-    let livro = req.body;
+    const livro = req.body;
     try {
-        livro.Service.inserir(livro);
-      res.status(201).json({msg:'Inserido com sucesso!'})
+        livroService.inserirLivro(livro); // Corrigir o nome da função no módulo
+        res.status(201).json({ msg: 'Inserido com sucesso!' });
     }
-    catch(err) {
-      //id-> 400 / msg -> msg de erro
-      res.status(err.id).json({msg: err.message});
+    catch (err) {
+        // id -> 400 / msg -> msg de erro
+        res.status(err.id).json({ msg: err.message });
     }
 }
 
 function buscarPorId(req, res) {
     const id = +req.params.id;
     try {
-      const prod = livro.Service.buscarPorId(id);
-      res.json(prod);
+        const livro = livroService.obterLivroPorId(id); // Corrigir o nome da função no módulo
+        res.json(livro);
     }
-    catch(err) {
-      //id-> 404 / msg -> msg de erro
-      res.status(err.id).json({msg: err.message});
+    catch (err) {
+        // id -> 404 / msg -> msg de erro
+        res.status(err.id).json({ msg: err.message });
     }
 }
 
-function atualizar (req, res) {
+function atualizar(req, res) {
     const id = +req.params.id;
-    let livro = req.body;
-  
-    try{ 
-      livro.Service.atualizar(id, livro);
-      res.json({msg:'Produto atualizado com sucesso'});
+    const livro = req.body;
+
+    try {
+        livroService.atualizarLivro(id, livro); // Corrigir o nome da função no módulo
+        res.json({ msg: 'Produto atualizado com sucesso' });
     }
-    catch(err) {
-      res.status(err.id).json({msg: err.message});
+    catch (err) {
+        res.status(err.id).json({ msg: err.message });
     }
 }
 
 function deletar(req, res) {
     const id = +req.params.id;
-    try{ 
-      const livroDeletado = livro.Service.deletar(id);
-      res.json(livroDeletado);
+    try {
+        const livroDeletado = livroService.excluirLivro(id); // Corrigir o nome da função no módulo
+        res.json(livroDeletado);
     }
-    catch(err) {
-      res.status(err.id).json({msg: err.message});
-    }   
+    catch (err) {
+        res.status(err.id).json({ msg: err.message });
+    }
 }
 
 module.exports = {
@@ -60,4 +59,4 @@ module.exports = {
     buscarPorId,
     atualizar,
     deletar
-}
+};

@@ -20,10 +20,11 @@ function criarLivro(title, author) {
 
 // Função para atualizar um livro por ID
 function atualizarLivro(id, title, author) {
-  const livroRepository.atualizarLivro(id);
-  if (livroRepository){
-      throw(id: 404,message:"Produto não Encontrado!:"):
+  const livro = livroRepository.atualizarLivro(id, title, author); // Corrija a chamada da função
+  if (!livro) {
+    throw { id: 404, message: "Livro não encontrado!" }; // Corrija a estrutura do objeto throw
   }
+  return livro;
 }
 
 // Função para excluir um livro por ID
