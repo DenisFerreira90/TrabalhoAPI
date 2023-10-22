@@ -35,7 +35,7 @@ function atualizar(req, res) {
 
     try {
         livroService.atualizarLivro(id, livro); // Corrigir o nome da função no módulo
-        res.json({ msg: 'Produto atualizado com sucesso' });
+        res.json({ msg: 'Livro atualizado com sucesso' });
     }
     catch (err) {
         res.status(err.id).json({ msg: err.message });
