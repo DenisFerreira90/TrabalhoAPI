@@ -24,12 +24,12 @@ function criarLivro(title, author) {
 }
 
 // Função para atualizar um livro por ID
-function atualizarLivro(id, title, author) {
+function atualizarLivro(id, livroAtualizado) {
   try {
     const livro = obterLivroPorId(id);
     if (livro) {
-      livro.title = title;
-      livro.author = author;
+      livro.title = livroAtualizado.title;
+      livro.author = livroAtualizado.author;
       return livro;
     } else {
       throw { id: 404, message: 'Produto não encontrado' };

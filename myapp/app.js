@@ -9,9 +9,9 @@ app.use(express.json());
 
 app.use((err, req, res, next) => {
   if (err.status === 400) {
-    res.status(400).json({ msg: '400 BAD REQUEST - ' + err.message });
+    res.status(400).json({ msg: err.message });
   } else if (err.status === 404) {
-    res.status(404).json({ msg: '404 NOT FOUND - ' + err.message });
+    res.status(404).json({ msg: err.message });
   } else {
     next(err);
   }
@@ -27,12 +27,12 @@ app.get('/livros/:id', (req, res) => {
   const livro = livroService.obterLivroPorId(id, livroRepository);
   if (livro) {
     res.json({
-      message: '200 SUCCESS OK - Livro encontrado com sucesso! 📚',
+      message: 'Livro encontrado com sucesso! 📚',
       livro: livro
     });
   } else {
     res.status(404).json({
-      message: '404 NOT FOUND - Livro não encontrado. 😔'
+      message: 'Livro não encontrado. 😔'
     });
   }
 });
@@ -40,7 +40,7 @@ app.get('/livros/:id', (req, res) => {
 app.post('/livros', (req, res) => {
   const { title, author } = req.body;
   const novoLivro = livroService.criarLivro(title, author, livroRepository);
-  res.status(201).json({ message: '201 CREATED - Livro criado com sucesso!', livro: novoLivro });
+  res.status(201).json({ message: 'Livro criado com sucesso!', livro: novoLivro });
 });
 
 function atualizar(req, res) {
@@ -48,9 +48,9 @@ function atualizar(req, res) {
   const { title, author } = req.body;
   try {
     livroRepository.atualizarLivro(id, title, author);
-    res.json({ message: '200 SUCCESS OK - Produto atualizado com sucesso' });
+    res.json({ message: 'Produto atualizado com sucesso' });
   } catch (err) {
-    res.status(400).json({ message: '400 BAD REQUEST - ' + err.message });
+    res.status(400).json({ message: err.message });
   }
 }
 
@@ -58,9 +58,9 @@ app.delete('/livros/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const result = livroService.excluirLivro(id, livroRepository);
   if (result) {
-    res.send('200 SUCCESS OK - Livro excluído com sucesso.');
+    res.send('Livro excluído com sucesso.');
   } else {
-    res.status(404).json({ message: '404 NOT FOUND - Livro não encontrado.' });
+    res.status(404).json({ message: 'Livro não encontrado.' });
   }
 });
 

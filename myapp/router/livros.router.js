@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const livroController = require('../controller/livroController'); // Nome do módulo
+
 // Roteador: /api/livros 
 router.get('/', livroController.listar);
 router.post('/', livroController.inserir);
