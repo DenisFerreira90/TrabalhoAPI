@@ -5,7 +5,8 @@ const port = 3001;
 const livroService = require('./services/livroService');
 const livroRepository = require('./repository/livroRepository');
 const livroRouter = require('./router/livros.router');
-
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 // Função para gerar um novo ID exclusivo
 function gerarNovoID() {
@@ -21,7 +22,9 @@ app.use('/api/livros', livroRouter);
 
 app.use(express.json());
 
-app.use((err, req, res, next) => {
+
+
+app.use((err, req, res, next) => { 
   if (err.status === 400) {
     res.status(400).json({ msg: err.message });
   } else if (err.status === 404) {
@@ -31,7 +34,7 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.get('/livros', (req, res) => {
+app.get('/livros', (req, res) => { // req de requisição , res de resposta
   const livros = livroService.listarLivros(livroRepository);
   res.json(livros);
 });
