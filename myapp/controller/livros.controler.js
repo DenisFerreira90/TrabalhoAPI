@@ -1,4 +1,4 @@
-const livroService = require('../service/livroService'); // Nome do módulo corrigido
+const livroService = require('../services/livroService'); // importando modulos
 
 function listar(req, res) {
     const listaLivros = livroService.listarLivros(); // Corrigir o nome da função no módulo
@@ -8,7 +8,7 @@ function listar(req, res) {
 function inserir(req, res) {
     const livro = req.body;
     try {
-        livroService.inserirLivro(livro); // Corrigir o nome da função no módulo
+        livroService.criarLivro(livro); // Corrigir o nome da função no módulo
         res.status(201).json({ msg: 'Inserido com sucesso!' });
     }
     catch (err) {
@@ -17,10 +17,11 @@ function inserir(req, res) {
     }
 }
 
+//Buscar por ID
 function buscarPorId(req, res) {
     const id = +req.params.id;
     try {
-        const livro = livroService.obterLivroPorId(id); // Corrigir o nome da função no módulo
+        const livro = livroService.obterLivroPorId(id); 
         res.json(livro);
     }
     catch (err) {
@@ -29,12 +30,13 @@ function buscarPorId(req, res) {
     }
 }
 
+// Atualizar Livro
 function atualizar(req, res) {
     const id = +req.params.id;
     const livro = req.body;
 
     try {
-        livroService.atualizarLivro(id, livro); // Corrigir o nome da função no módulo
+        livroService.atualizarLivro(id, livro); 
         res.json({ msg: 'Livro atualizado com sucesso' });
     }
     catch (err) {
@@ -42,10 +44,11 @@ function atualizar(req, res) {
     }
 }
 
+// Deletar Livro por ID
 function deletar(req, res) {
     const id = +req.params.id;
     try {
-        const livroDeletado = livroService.excluirLivro(id); // Corrigir o nome da função no módulo
+        const livroDeletado = livroService.excluirLivro(id); 
         res.json(livroDeletado);
     }
     catch (err) {

@@ -4,6 +4,20 @@ const port = 3001;
 
 const livroService = require('./services/livroService');
 const livroRepository = require('./repository/livroRepository');
+const livroRouter = require('./router/livros.router');
+
+
+// Função para gerar um novo ID exclusivo
+function gerarNovoID() {
+  const livros = livroRepository.listarLivros();
+  if (livros.length === 0) {
+    return 1; // Se não houver livros, comece com o ID 1
+  }
+  const ultimoLivro = livros[livros.length - 1];
+  return ultimoLivro.id + 1; // ID único é um a mais que o último ID
+}
+
+app.use('/api/livros', livroRouter);
 
 app.use(express.json());
 
@@ -39,11 +53,20 @@ app.get('/livros/:id', (req, res) => {
 
 app.post('/livros', (req, res) => {
   const { title, author } = req.body;
-  const novoLivro = livroService.criarLivro(title, author, livroRepository);
-  res.status(201).json({ message: 'Livro criado com sucesso!', livro: novoLivro });
+  
+  // Gere um novo ID exclusivo
+  const id = gerarNovoID(); // Implemente a função para gerar um ID exclusivo
+  
+  // Verifica se já existe um livro com o mesmo ID
+  if (livroService.existeLivroComID(id)) {
+    res.status(409).json({ message: 'Livro com este ID já existe' });
+  } else {
+    const novoLivro = livroService.criarLivro(id, title, author, livroRepository);
+    res.status(201).json({ message: 'Livro criado com sucesso!', livro: novoLivro });
+  }
 });
 
-function atualizar(req, res) {
+app.put('/livros/:id', (req, res) => {
   const id = +req.params.id;
   const { title, author } = req.body;
   try {
@@ -52,7 +75,7 @@ function atualizar(req, res) {
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
-}
+});
 
 app.delete('/livros/:id', (req, res) => {
   const id = parseInt(req.params.id);

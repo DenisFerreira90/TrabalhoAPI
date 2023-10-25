@@ -1,7 +1,7 @@
 // limite máximo de livros
 const MAX_LIVROS = 5;
 
-// Dados em memória 
+// Dados em memória
 let livros = [
   { id: 1, title: 'Livro 1', author: 'Autor 1' },
   { id: 2, title: 'Livro 2', author: 'Autor 2' },
