@@ -1,0 +1,29 @@
+{
+    "livros": [
+        { "title": "Dom Quixote", "author": "Miguel de Cervantes" },
+        { "title": "Cem Anos de Solidão", "author": "Gabriel García Márquez" },
+        { "title": "1984", "author": "George Orwell" },
+        { "title": "O Grande Gatsby", "author": "F. Scott Fitzgerald" },
+        { "title": "Ulisses", "author": "James Joyce" },
+        { "title": "Dom Casmurro", "author": "Machado de Assis" },
+        { "title": "Guerra e Paz", "author": "Lev Tolstói" },
+        { "title": "A Metamorfose", "author": "Franz Kafka" },
+        { "title": "A Moreninha", "author": "Joaquim Manuel de Macedo" },
+        { "title": "A Revolução dos Bichos", "author": "George Orwell" },
+        { "title": "A Máquina do Tempo", "author": "H.G. Wells" },
+        { "title": "Cem Anos de Solidão", "author": "Gabriel García Márquez" },
+        { "title": "O Estrangeiro", "author": "Albert Camus" },
+        { "title": "Moby Dick", "author": "Herman Melville" },
+        { "title": "Crime e Castigo", "author": "Fiódor Dostoiévski" },
+        { "title": "O Apanhador no Campo de Centeio", "author": "J.D. Salinger" },
+        { "title": "Ensaio sobre a Cegueira", "author": "José Saramago" },
+        { "title": "O Hobbit", "author": "J.R.R. Tolkien" },
+        { "title": "Cem Anos de Solidão", "author": "Gabriel García Márquez" },
+        { "title": "O Corvo", "author": "Edgar Allan Poe" },
+        { "title": "As Vinhas da Ira", "author": "John Steinbeck" },
+        { "title": "Maus", "author": "Art Spiegelman" },
+        { "title": "Cem Anos de Solidão", "author": "Gabriel García Márquez" },
+        { "title": "O Poderoso Chefão", "author": "Mario Puzo" },
+        { "title": "Grande Sertão: Veredas", "author": "João Guimarães Rosa" }
+    ]
+}

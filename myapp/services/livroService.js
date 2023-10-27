@@ -3,12 +3,14 @@
 // Importe o repositório
 const livroRepository = require('../repository/livroRepository');
 
+// Limite máximo de livros
+const MAX_LIVROS = 10;
+
 // Função para listar todos os livros
 function listarLivros() {
   return livroRepository.listarLivros();
 }
 
-// Função para obter um livro por ID
 function obterLivroPorId(id) {
   return livroRepository.obterLivroPorId(id);
 }
@@ -25,6 +27,12 @@ function gerarNovoID() {
 
 // Função para criar um novo livro
 function criarLivro(title, author) {
+  const livros = livroRepository.listarLivros();
+
+  if (livros.length >= MAX_LIVROS) {
+    throw { id: 410, message: 'Limite máximo de livros atingido' };
+  }
+
   try {
     const livro = livroRepository.criarLivro(title, author);
     return { message: 'Livro criado com sucesso', livro };
@@ -61,8 +69,14 @@ function existeLivroComID(id) {
 
 // Função para excluir um livro por ID
 function excluirLivro(id) {
-  return livroRepository.excluirLivro(id);
+  const sucesso = livroRepository.excluirLivro(id);
+  if (sucesso) {
+    return `Livro com ID ${id} excluído com sucesso.`;
+  } else {
+    throw { id: 404, message: 'Livro não encontrado' };
+  }
 }
+
 
 module.exports = {
   listarLivros,
@@ -71,4 +85,5 @@ module.exports = {
   atualizarLivro,
   excluirLivro,
   existeLivroComID,
+  gerarNovoID
 };
