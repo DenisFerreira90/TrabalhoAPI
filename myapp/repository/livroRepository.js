@@ -1,14 +1,12 @@
 // limite máximo de livros
-const MAX_LIVROS = 10;
-const livros = [];
-//exemplo de array
-/*
-{ 
-  "id": 1,
-"title": "Livro 1",
-"author": "Autor 1" 
-  }
-*/ 
+const MAX_LIVROS = 5;
+
+// Dados em memória
+let livros = [
+  { id: 1, title: 'Livro 1', author: 'Autor 1' },
+  { id: 2, title: 'Livro 2', author: 'Autor 2' },
+];
+
 // Função para listar todos os livros
 function listarLivros() {
   return livros;
@@ -31,7 +29,6 @@ function criarLivro(title, author) {
   return novoLivro;
 }
 
-
 // Função para atualizar um livro por ID
 function atualizarLivro(id, title, author) {
   const livro = obterLivroPorId(id);
@@ -43,13 +40,14 @@ function atualizarLivro(id, title, author) {
   return null;
 }
 
+// Função para excluir um livro por ID
 function excluirLivro(id) {
   const index = livros.findIndex((livro) => livro.id === id);
   if (index !== -1) {
-    const livroExcluido = livros.splice(index, 1)[0]; // Obtenha o livro excluído
-    return livroExcluido;
+    livros.splice(index, 1);
+    return true;
   }
-  return null; // Livro não encontrado
+  return false;
 }
 
 module.exports = {
