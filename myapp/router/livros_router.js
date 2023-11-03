@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const livroController = require('../controller/livros.controler'); 
-const livroService = require('../services/livroService') // importando modulos
+//const livroService = require('../services/livroService') // importando modulos
 
 // Roteador: /api/livros 
 router.get('/', livroController.listar);
