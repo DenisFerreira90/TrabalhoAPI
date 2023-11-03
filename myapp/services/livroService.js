@@ -69,6 +69,5 @@ module.exports = {
   obterLivroPorId,
   criarLivro,
   atualizarLivro,
-  excluirLivro,
-  existeLivroComID,
+  excluirLivro
 };
