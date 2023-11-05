@@ -1,14 +1,14 @@
 const livroService = require('../services/livroService'); // importando modulos
 
 function listar(req, res) {
-    const listaLivros = livroService.listarLivros(); 
+    const listaLivros = livroService.listarLivros(); // Corrigir o nome da função no módulo
     res.json(listaLivros);
 }
 
 function inserir(req, res) {
     const livro = req.body;
     try {
-        livroService.criarLivro(livro); 
+        livroService.criarLivro(livro); // Corrigir o nome da função no módulo
         res.status(201).json({ msg: 'Inserido com sucesso!' });
     }
     catch (err) {
