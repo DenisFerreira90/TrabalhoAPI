@@ -7,7 +7,7 @@ function verificaAcesso(req, res, next) {
         next();
     }
     catch(err) {
-        res.status(err.id).json({msg: err.message});
+        res.status(err.id).json({msg: err.massage});
     }
 }
 module.exports = {verificaAcesso}
